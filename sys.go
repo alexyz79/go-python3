@@ -16,6 +16,12 @@ import (
 	"unsafe"
 )
 
+var (
+	Py_single_input = int(C.Py_single_input)
+	Py_file_input   = int(C.Py_file_input)
+	Py_eval_input   = int(C.Py_eval_input)
+)
+
 //PySys_GetObject : https://docs.python.org/3/c-api/sys.html#c.PySys_GetObject
 func PySys_GetObject(name string) *PyObject {
 	cname := C.CString(name)
