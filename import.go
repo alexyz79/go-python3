@@ -121,10 +121,10 @@ func PyImport_GetModuleDict() *PyObject {
 }
 
 //PyImport_GetModule : https://docs.python.org/3/c-api/import.html#c.PyImport_GetModule
-func PyImport_GetModule(name *PyObject) *PyObject {
-	return togo(C.PyImport_GetModule(toc(name)))
+// func PyImport_GetModule(name *PyObject) *PyObject {
+// 	return togo(C.PyImport_GetModule(toc(name)))
 
-}
+// }
 
 //PyImport_GetImporter : https://docs.python.org/3/c-api/import.html#c.PyImport_GetImporter
 func PyImport_GetImporter(path *PyObject) *PyObject {

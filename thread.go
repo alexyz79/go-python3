@@ -72,3 +72,23 @@ func PyGILState_GetThisThreadState() *PyThreadState {
 func PyGILState_Check() bool {
 	return C.PyGILState_Check() == 1
 }
+
+// PyNewInterpreter : https://docs.python.org/3/c-api/init.html#c.Py_NewInterpreter
+func PyNewInterpreter() *PyThreadState {
+	return (*PyThreadState)(C.Py_NewInterpreter())
+}
+
+// PyEndInterpreter : https://docs.python.org/3/c-api/init.html#c.Py_EndInterpreter
+func PyEndInterpreter(tstate *PyThreadState) {
+	C.Py_EndInterpreter((*C.PyThreadState)(tstate))
+}
+
+// PyEval_AcquireThread : https://docs.python.org/3/c-api/init.html#c.PyEval_AcquireThread
+func PyEval_AcquireThread(tstate *PyThreadState) {
+	C.PyEval_AcquireThread((*C.PyThreadState)(tstate))
+}
+
+// PyEval_ReleaseThread : https://docs.python.org/3/c-api/init.html#c.PyEval_AcquireThread
+func PyEval_ReleaseThread(tstate *PyThreadState) {
+	C.PyEval_ReleaseThread((*C.PyThreadState)(tstate))
+}

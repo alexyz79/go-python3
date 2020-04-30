@@ -65,3 +65,20 @@ func PyRun_SimpleString(command string) int {
 	// C.PyRun_SimpleString is a macro, using C.PyRun_SimpleStringFlags instead
 	return int(C.PyRun_SimpleStringFlags(ccommand, nil))
 }
+
+//Py_CompileString : https://docs.python.org/3/c-api/veryhigh.html?highlight=pycompilerflags#c.Py_CompileStringExFlags
+func Py_CompileString(str string, filename string, start int, optmize int) *PyObject {
+	cstr := C.CString(str)
+	cfilename := C.CString(filename)
+	defer C.free(unsafe.Pointer(cstr))
+	defer C.free(unsafe.Pointer(cfilename))
+
+	// C.Py_CompileString is a macro, using C.PyRun_SimpleStringFlags instead
+	return togo(C.Py_CompileStringExFlags(cstr, cfilename, C.int(start), nil, C.int(optmize)))
+}
+
+// PyEval_EvalCode : https://docs.python.org/3/c-api/veryhigh.html?highlight=pycompilerflags#c.PyEval_EvalCode
+func PyEval_EvalCode(co *PyObject, globals *PyObject, locals *PyObject) *PyObject {
+	// C.PyRun_SimpleString is a macro, using C.PyRun_SimpleStringFlags instead
+	return togo(C.PyEval_EvalCode(toc(co), toc(globals), toc(locals)))
+}
