@@ -53,4 +53,9 @@ int _go_PyObject_DelAttrString(PyObject *o, const char *attr_name);
 
 int _go_PyObject_TypeCheck(PyObject *o, PyTypeObject *type);
 
+PyMethodDef *_go_malloc_PyMethodDefArray(size_t n);
+void _go_set_PyMethodDef(PyMethodDef *array, int i, PyMethodDef *o);
+
+PyObject *_go_PyModule_Create(PyModuleDef *m);
+
 #endif

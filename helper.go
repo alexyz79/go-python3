@@ -17,6 +17,7 @@ func togo(cobject *C.PyObject) *PyObject {
 	return (*PyObject)(cobject)
 }
 
+//toc converts a *C.PyObject to a *PyObject
 func toc(object *PyObject) *C.PyObject {
 	return (*C.PyObject)(object)
 }
